@@ -36,9 +36,10 @@ db.init_app(app)
 class User(UserMixin, db.Model):
     __tablename__ = "users"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    email: Mapped[str] = mapped_column(String(100), unique=True)
+    idno: Mapped[str] = mapped_column(String(100), unique=True)
     password: Mapped[str] = mapped_column(String(100))
     name: Mapped[str] = mapped_column(String(100))
+    amount: Mapped[str] = mapped_column(String(100))
 
 with app.app_context():
     db.create_all()
@@ -63,9 +64,10 @@ def register():
             salt_length=8
         )
         new_user = User(
-            email=form.email.data,
+            idno=form.idno.data,
             name=form.name.data,
             password=hash_and_salted_password,
+            amount= form.amount.data,
         )
         db.session.add(new_user)
         db.session.commit()

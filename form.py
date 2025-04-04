@@ -6,9 +6,10 @@ from flask_ckeditor import CKEditorField
 
 # Create a form to register new users
 class RegisterForm(FlaskForm):
-    email = StringField("Email", validators=[DataRequired()])
+    idno = StringField("Id Number", validators=[DataRequired()])
     password = PasswordField("Password", validators=[DataRequired()])
     name = StringField("Name", validators=[DataRequired()])
+    amount = StringField("Amount", validators=[DataRequired()])
     submit = SubmitField("Sign Me Up!")
 
 
